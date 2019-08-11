@@ -185,9 +185,74 @@ environment(add)
 
 ## Read csv_file
 
-```{r}
-path <- ''
+```{r, echo = TRUE, eval=TRUE}
+spot <- read_csv("XRAy_files/spot.csv")
+```
+
+## Create summary statistics
+
+```{r, echo = TRUE, eval=TRUE}
+summary(spot)
 ```
 
 
+## Check data frame and columns names.
+```{r, echo = TRUE, eval=TRUE}
+head(spot)
+names(spot)
+```
 
+
+## `$`
+The simbol `$` can access to the columns of a data frame.
+```{r, echo = TRUE, eval=TRUE}
+head(spot$Peak)
+
+class(spot)
+```
+
+## Rename columns
+Use pipe
+```{r, echo = TRUE, eval=TRUE}
+spot <- spot %>%
+          rename(id = X1,
+                 X = Coor.1,
+                 Y = Coor.2,
+                 Intensity = Peak)
+head(spot)
+```
+
+
+## Filter values of a column
+
+```{r, echo = TRUE, eval=TRUE}
+spot <- spot %>%
+          filter(Intensity > 1000)
+head(spot)
+```
+
+## Sort data
+
+```{r, echo = TRUE, eval=TRUE}
+spot <- spot %>%
+          arrange(Intensity)
+head(spot)
+```
+
+## Select column and create new variable
+
+```{r, echo = TRUE, eval=TRUE}
+spot <- spot %>%
+          select(-c('MeasB.1', 'MeasB.2', 'MeasB.3', 'MeasB.4')) %>%
+          mutate(code = if_else(Intensity > 25000, 'strong', 'medium'))
+head(spot)
+```
+
+## Plot Intensity using ggplot2
+
+```{r, echo = TRUE, eval=TRUE}
+spot %>%
+  ggplot(aes(X, Y, size = Intensity, color = code)) +
+    geom_point() + theme_bw()
+
+```
