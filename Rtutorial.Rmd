@@ -1,0 +1,193 @@
+---
+title: "Introduction to R programming"
+author: "Rita Giordano"
+date: "giordanor@rsc.org, rgiordano@gmx.com"
+output:
+  ioslides_presentation:
+    #logo: RSC_logoS.png
+  beamer_presentation: default
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+      $('slide:not(.title-slide, .backdrop, .segue)').append('<footer label=\"Introduction to R programming ECM32 
+      Crystallographic Computing Forum Melk 14th-17th August 2019\"></footer>');    
+    })
+</script>
+
+<style>
+footer:after {
+    content: attr(label);
+    font-size: 12pt;
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+    line-height: 1.9;
+  }
+  .gdbar img {
+  width: 300px !important;
+  height: 150px !important;
+  margin: 8px 8px;
+}
+
+.gdbar {
+  width: 400px !important;
+  height: 170px !important;
+}
+  
+</style>
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 12px;
+  }
+td {  /* Table  */
+  font-size: 8px;
+}
+h1.title {
+  font-size: 38px;
+  color: DarkRed;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+  color: DarkBlue;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+  color: DarkBlue;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkBlue;
+}
+code.r{ /* Code block */
+    font-size: 12px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 14px;
+}
+</style>
+
+
+## R introduction
+R is a programming language for statistical computing.
+
+Useful website:
+
+- https://www.r-project.org
+- https://cran.r-project.org
+- https://www.r-bloggers.com
+- https://en.wikibooks.org/wiki/R_Programming
+
+## Packages
+
+- crone: https://cran.r-project.org/web/packages/crone/index.html
+- cRy (J. Foadi, D. Waterman, R.Giordano): to analyse mtz file and visualize data ...work in progress!!!
+- bio3d   protein structure analysis https://thegrantlab.org/bio3d/index.php
+- tidyverse 
+- ggplot2 - grammar for graphics
+
+## RStudio
+
+RStudio is an IDE for R: 
+
+- https://www.rstudio.com
+
+- https://www.rstudio.com/products/rstudio/download/#download
+
+## How to assign values to a variable and load package
+
+In R to assign a value to a variable there is this symbol `<-`
+
+called assignment operator.
+
+```{r cars, echo = TRUE, eval=TRUE}
+x <- 5
+x
+```
+
+To load package use the function library
+```{r, echo = TRUE, eval=TRUE}
+library(tidyverse)
+library(cry)
+```
+
+## Control flow past and present
+
+Before it was:
+
+- if-else: 
+```{r,echo = TRUE,eval=FALSE}
+if (condition) {expression}
+else
+```
+
+Now if_else {dplyr} a vectorised if:
+
+```{r,echo = TRUE,eval=FALSE}
+if_else(condition, true, false)
+```
+- for:
+```{r,echo = TRUE,eval=FALSE}
+for (var in seq) {expression}
+```
+
+
+## Control flow
+
+- repeat:
+```{r,echo = TRUE, eval=FALSE}
+repeat {expression}
+```
+- break: to stop loop
+- next: to skip iteration
+- return: to exit from a loop and return a value
+
+## R function
+
+An R function is defined as global environment: .GlobalEnv.
+```{r,echo = TRUE, eval=TRUE}
+add <- function(x,y)
+{
+  a = x+y  
+  
+  return(a)
+
+}
+
+add(2,3)
+```
+
+```{r, echo = TRUE, eval=TRUE}
+environment(add)
+```
+
+
+
+## Tidyverse
+
+
+“Happy families are all alike; every unhappy family is unhappy in its own way.” –– Leo Tolstoy
+
+“Tidy datasets are all alike, but every messy dataset is messy in its own way.” –– Hadley Wickham
+
+
+
+## Read csv_file
+
+```{r}
+path <- ''
+```
+
+
+
